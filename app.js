@@ -22,14 +22,23 @@ const templates = {
                     <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">Hi, ${state.user.name}!</h1>
                     <p class="text-muted">Friday, August 04, 2023</p>
                 </div>
-                <div style="display: flex; gap: 20px; text-align: right;">
-                    <div>
-                        <span style="font-size: 24px; font-weight: 700; color: var(--secondary);">${state.user.streak}🔥</span>
-                        <p class="text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Streak</p>
-                    </div>
-                    <div>
-                        <span style="font-size: 24px; font-weight: 700; color: var(--primary);">${state.user.points}</span>
-                        <p class="text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Points</p>
+                <div class="header-actions">
+                    <button class="three-dots-btn" onclick="toggleDropdown('dash-dropdown')">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                    <div id="dash-dropdown" class="dropdown-content">
+                        <div class="dropdown-item">
+                            <span class="material-symbols-outlined" style="color: var(--secondary);">local_fire_department</span>
+                            <div>
+                                <span style="font-weight: 800; color: var(--secondary);">${state.user.streak}</span> Streak
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <span class="material-symbols-outlined">stars</span>
+                            <div>
+                                <span style="font-weight: 800; color: var(--primary);">${state.user.points}</span> Points
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -269,18 +278,23 @@ const templates = {
                     <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">Teacher Intelligence</h1>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <div style="width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 10px var(--secondary);" class="pulse"></div>
-                        <p class="text-muted" style="font-size: 14px; font-weight: 700;">Live Session: PHY42 · 142 Students Connected</p>
+                        <p class="text-muted" style="font-size: 14px; font-weight: 700;">Live Session: PHY42</p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 12px;">
-                     <button class="btn-primary" style="background: var(--glass); color: var(--on-surface); border: 1px solid var(--outline);">
-                        <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
-                        Export Report
+                <div class="header-actions">
+                    <button class="three-dots-btn" onclick="toggleDropdown('teacher-dropdown')">
+                        <span class="material-symbols-outlined">more_vert</span>
                     </button>
-                    <button class="btn-primary">
-                        <span class="material-symbols-outlined" style="font-size: 18px; font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                        AI Re-Cluster
-                    </button>
+                    <div id="teacher-dropdown" class="dropdown-content">
+                        <button class="dropdown-item">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            AI Re-Cluster
+                        </button>
+                        <button class="dropdown-item">
+                            <span class="material-symbols-outlined">download</span>
+                            Export Report
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -394,12 +408,26 @@ function resolveDoubt(id) {
     render();
 }
 
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+    } else {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
+        dropdown.classList.add('show');
+    }
+}
+
 // Event Listeners
 document.addEventListener('click', (e) => {
     const navItem = e.target.closest('.nav-item');
     if (navItem && navItem.getAttribute('data-view')) {
         e.preventDefault();
         navigateTo(navItem.getAttribute('data-view'));
+    }
+
+    if (!e.target.closest('.header-actions')) {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.classList.remove('show'));
     }
 });
 
