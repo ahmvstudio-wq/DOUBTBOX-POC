@@ -1,25 +1,23 @@
 :root {
     --bg: #000000;
-    --surface: #121212;
-    --surface-light: #1e1e1e;
-    --primary: #c9bfff;
-    --primary-dim: #917eff;
+    --surface: #14121b;
+    --surface-container: #1c1a24;
+    --surface-container-high: #2b2932;
+    --primary: #7B61FF;
+    --primary-container: #2e009c;
+    --on-primary: #ffffff;
     --secondary: #8dd5b2;
     --on-surface: #e5e0ee;
     --on-surface-variant: #928ea1;
     --outline: rgba(255, 255, 255, 0.1);
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.05);
     
     --font-main: 'Inter', sans-serif;
     
+    --radius-xl: 32px;
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 12px;
-    
-    --spacing-lg: 32px;
-    --spacing-md: 20px;
-    --spacing-sm: 12px;
 }
 
 * {
@@ -33,141 +31,142 @@ body {
     background-color: var(--bg);
     color: var(--on-surface);
     font-family: var(--font-main);
-    overflow: hidden; /* App feel */
+    overflow: hidden;
     height: 100vh;
     display: flex;
+    justify-content: center;
 }
 
-/* Layout */
+/* App Container (Mobile Constraint for Desktop) */
 #app {
-    display: flex;
     width: 100%;
+    max-width: 480px; /* Force mobile-first look on desktop */
     height: 100%;
-}
-
-.sidebar {
-    width: 240px;
-    height: 100%;
-    background: var(--surface);
+    background: var(--bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--outline);
     border-right: 1px solid var(--outline);
-    padding: var(--spacing-lg) var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    flex-shrink: 0;
-}
-
-.logo {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: -0.5px;
-}
-
-.nav-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.nav-item {
-    display: flex;
-    items-center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: var(--radius-sm);
-    color: var(--on-surface-variant);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.nav-item:hover {
-    background: var(--glass);
-    color: var(--on-surface);
-}
-
-.nav-item.active {
-    background: var(--primary);
-    color: var(--bg);
-}
-
-.nav-item .material-symbols-outlined {
-    font-size: 20px;
 }
 
 .main-content {
     flex: 1;
-    height: 100%;
     overflow-y: auto;
-    padding: var(--spacing-lg);
-    background: radial-gradient(circle at top right, rgba(201, 191, 255, 0.05), transparent 400px);
+    padding: 24px;
+    padding-bottom: 100px;
+    scroll-behavior: smooth;
 }
 
-/* Common UI Components */
+/* Hide scrollbar for clean look */
+.main-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(20, 18, 27, 0.8);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--outline);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--on-surface-variant);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item.active .material-symbols-outlined {
+    background: var(--primary-container);
+    color: var(--primary);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-variation-settings: 'FILL' 1;
+}
+
+/* Bento Cards */
 .card {
-    background: var(--surface-light);
-    border: 1px solid var(--glass-border);
+    background: var(--surface-container);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+    padding: 20px;
+    border: 1px solid var(--outline);
+    margin-bottom: 16px;
 }
 
-.glass-card {
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
+.glass-pill {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary {
     background: var(--primary);
-    color: var(--bg);
+    color: white;
     border: none;
-    padding: 14px 24px;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 700;
     font-size: 15px;
+    width: 100%;
     cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-h1, h2, h3 {
-    letter-spacing: -0.5px;
-}
-
-.text-muted {
+.btn-tab {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    background: transparent;
+    border: none;
     color: var(--on-surface-variant);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
 }
 
-/* Grid Layouts */
-.grid-bento {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 20px;
+.btn-tab.active {
+    background: var(--surface-container-high);
+    color: var(--on-surface);
 }
+
+/* Typography */
+h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 18px; font-weight: 700; }
+.text-muted { color: var(--on-surface-variant); font-size: 14px; }
 
 /* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .view-container {
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-/* Specific view styles will go here or in a separate section */
