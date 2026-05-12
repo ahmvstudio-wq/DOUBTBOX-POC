@@ -44,14 +44,14 @@ const templates = {
             </header>
 
             <div class="grid-2">
-                <div class="card" style="background: var(--primary-dim); color: var(--bg); display: flex; flex-direction: column; justify-content: space-between; height: 340px; position: relative; overflow: hidden;">
+                <div class="card" style="background: var(--primary); color: var(--on-primary); display: flex; flex-direction: column; justify-content: space-between; height: 340px; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: -20px; right: -20px; font-size: 120px; opacity: 0.1; transform: rotate(15deg);" class="material-symbols-outlined">rocket_launch</div>
                     <div style="position: relative; z-index: 1;">
                         <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 12px; line-height: 1.1;">Mastering<br>Physics</h2>
-                        <p style="opacity: 0.8; font-weight: 600; font-size: 14px;">Next Up: Lesson 4 · Perspective & Motion</p>
+                        <p style="opacity: 0.9; font-weight: 600; font-size: 14px;">Next Up: Lesson 4 · Perspective & Motion</p>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1;">
-                        <button class="btn-primary" style="background: var(--bg); color: var(--primary);" onclick="navigateTo('lessons')">
+                        <button class="btn-primary" style="background: var(--on-primary); color: var(--primary); padding: 12px 20px; border-radius: 12px;" onclick="navigateTo('lessons')">
                             Continue Learning
                             <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
                         </button>

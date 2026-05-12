@@ -11,6 +11,9 @@
     --on-surface-variant: #928ea1;
     --outline: rgba(255, 255, 255, 0.1);
     --glass: rgba(255, 255, 255, 0.05);
+    --primary-dim: #2e009c;
+    --surface-light: #2b2932;
+    --glass-border: rgba(255, 255, 255, 0.1);
     
     --font-main: 'Inter', sans-serif;
     
@@ -109,6 +112,16 @@ body {
     border-radius: var(--radius-lg);
     padding: 20px;
     border: 1px solid var(--outline);
+    margin-bottom: 16px;
+}
+
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    border: 1px solid var(--glass-border);
     margin-bottom: 16px;
 }
 
