@@ -17,9 +17,9 @@ let state = {
 const templates = {
     dashboard: () => `
         <div class="view-container">
-            <header style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end;">
+            <header class="view-header">
                 <div>
-                    <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">Hi, ${state.user.name}!</h1>
+                    <h1 style="margin-bottom: var(--space-2);">Hi, ${state.user.name}!</h1>
                     <p class="text-muted">Friday, August 04, 2023</p>
                 </div>
                 <div class="header-actions">
@@ -43,8 +43,8 @@ const templates = {
                 </div>
             </header>
 
-            <div class="grid-2">
-                <div class="card" style="background: var(--primary); color: var(--on-primary); display: flex; flex-direction: column; justify-content: space-between; height: 340px; position: relative; overflow: hidden;">
+            <div class="grid-responsive dashboard-top">
+                <div class="card" style="background: var(--primary); color: var(--on-primary); display: flex; flex-direction: column; justify-content: space-between; min-height: 340px; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: -20px; right: -20px; font-size: 120px; opacity: 0.1; transform: rotate(15deg);" class="material-symbols-outlined">rocket_launch</div>
                     <div style="position: relative; z-index: 1;">
                         <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 12px; line-height: 1.1;">Mastering<br>Physics</h2>
@@ -117,8 +117,8 @@ const templates = {
     `,
     lessons: () => `
         <div class="view-container">
-            <header style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center;">
-                <div style="display: flex; align-items: center; gap: 16px;">
+            <header class="view-header">
+                <div style="display: flex; align-items: center; gap: var(--space-3);">
                     <button class="nav-item" style="padding: 8px; background: var(--glass);" onclick="navigateTo('dashboard')">
                         <span class="material-symbols-outlined">arrow_back</span>
                     </button>
@@ -129,7 +129,7 @@ const templates = {
                 </div>
             </header>
 
-            <div class="grid-2" style="grid-template-columns: 1fr 320px;">
+            <div class="grid-responsive grid-lessons">
                 <div>
                     <div style="width: 100%; aspect-ratio: 16/9; background: #111; border-radius: var(--radius-lg); overflow: hidden; position: relative; border: 1px solid var(--outline); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
                         <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
@@ -273,9 +273,9 @@ const templates = {
     `,
     teacher: () => `
         <div class="view-container">
-            <header style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <header class="view-header">
                 <div>
-                    <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 8px;">Teacher Intelligence</h1>
+                    <h1 style="margin-bottom: var(--space-2);">Teacher Intelligence</h1>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <div style="width: 10px; height: 10px; background: var(--secondary); border-radius: 50%; box-shadow: 0 0 10px var(--secondary);" class="pulse"></div>
                         <p class="text-muted" style="font-size: 14px; font-weight: 700;">Live Session: PHY42</p>
@@ -298,7 +298,7 @@ const templates = {
                 </div>
             </header>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 48px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
                 <div class="glass-card" style="position: relative; overflow: hidden;">
                     <div style="position: absolute; right: -10px; top: -10px; font-size: 64px; opacity: 0.05;" class="material-symbols-outlined">chat_bubble</div>
                     <p class="text-muted" style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Total Doubts</p>
@@ -325,7 +325,7 @@ const templates = {
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;" class="grid-2">
+            <div class="grid-responsive">
                 ${state.doubts.filter(d => d.status === 'pending').map(d => `
                     <div class="card" style="background: #111; border: 1px solid var(--glass-border); transition: transform 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--glass-border)'">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
