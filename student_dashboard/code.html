@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartClass - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "primary-container": "#917eff",
+                "outline": "#928ea1",
+                "on-background": "#e5e0ee",
+                "surface-container-high": "#2b2932",
+                "surface-container-highest": "#35333e",
+                "tertiary-fixed-dim": "#ebc32e",
+                "on-error": "#690005",
+                "surface-tint": "#c9bfff",
+                "tertiary-container": "#cda705",
+                "surface-dim": "#14121b",
+                "secondary-fixed-dim": "#8dd5b2",
+                "background": "#14121b",
+                "surface": "#14121b",
+                "on-secondary": "#003825",
+                "on-primary": "#2e009c",
+                "on-secondary-fixed-variant": "#005137",
+                "on-primary-container": "#28008a",
+                "surface-bright": "#3a3842",
+                "on-tertiary-container": "#4d3e00",
+                "on-surface": "#e5e0ee",
+                "on-secondary-fixed": "#002114",
+                "error": "#ffb4ab",
+                "on-primary-fixed-variant": "#441cc8",
+                "secondary": "#8dd5b2",
+                "on-tertiary-fixed-variant": "#564500",
+                "surface-container-low": "#1c1a24",
+                "primary-fixed-dim": "#c9bfff",
+                "surface-container-lowest": "#0e0d16",
+                "on-tertiary": "#3c2f00",
+                "tertiary-fixed": "#ffe082",
+                "inverse-surface": "#e5e0ee",
+                "inverse-primary": "#5d3fe0",
+                "surface-container": "#201e28",
+                "on-secondary-container": "#83caa7",
+                "secondary-container": "#00573b",
+                "inverse-on-surface": "#312f39",
+                "primary-fixed": "#e5deff",
+                "on-tertiary-fixed": "#231b00",
+                "error-container": "#93000a",
+                "primary": "#c9bfff",
+                "tertiary": "#ebc32e",
+                "on-primary-fixed": "#1a0063",
+                "on-surface-variant": "#c9c4d8",
+                "surface-variant": "#35333e",
+                "outline-variant": "#484555",
+                "secondary-fixed": "#a9f2cd",
+                "on-error-container": "#ffdad6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "container-margin": "20px",
+                "inline-gutter": "12px",
+                "stack-gap-sm": "8px",
+                "stack-gap-md": "16px",
+                "stack-gap-lg": "24px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Inter"
+                ],
+                "label-bold": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-bold": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "30px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  body {
+    background-color: #14121b; /* background */
+    color: #e5e0ee; /* on-background */
+  }
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .bg-gradient-mesh {
+    background-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+  }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background dark:bg-background text-on-surface dark:text-on-surface pb-[100px] antialiased">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full bg-background dark:bg-background sticky top-0 z-40">
+<div class="flex items-center gap-inline-gutter">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high border border-outline/20">
+<img alt="Student Profile" class="w-full h-full object-cover" data-alt="A close-up profile photo of a young, confident male student smiling slightly. He is lit by soft, bright natural lighting typical of a high-end photography studio. The background is a very dark, slightly blurry studio setting. The overall mood is approachable, energetic, and intelligent, fitting a premium digital learning platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHoMbaJEiRawVGdon4nHTag_WoFKaXje1YsQHPpyFwtFf89Xdf4IRcLvXK21ombEtaB9DKQw2qsGpe_lUdR0-KyqeotcoxLQ5vLKxrH6m8HFADUtRaGeg8s0W2Xj5sTVplGo9ftxA9E5W7D1vymtT4vb3HN7qbHaM5yfXS5QYDc0qDp5RYcybvNEmMdjO7yPtVUCVa2PIClo-5DCJiEhCB23NP7rToKT2WNj04WV1rEUSPpwP-QrfqgjGAWa8sUUWaHq_vFKaTUQ"/>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Hi,</p>
+<p class="text-label-bold font-label-bold text-on-surface">Daniel!</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1">
+<span class="text-label-bold font-label-bold text-on-surface-variant">(4)</span>
+<h1 class="text-headline-lg font-headline-lg text-primary dark:text-primary">Current</h1>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-primary dark:text-primary">Tasks</h1>
+</div>
+</header>
+<main class="px-container-margin pb-container-margin flex flex-col gap-stack-gap-lg mt-4 max-w-2xl mx-auto">
+<!-- Date/Calendar Section -->
+<section>
+<div class="flex justify-between items-end mb-stack-gap-md">
+<h2 class="text-display-lg font-display-lg text-on-surface flex items-center gap-2">
+          Today <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+</h2>
+<div class="text-right text-on-surface-variant">
+<p class="text-label-sm font-label-sm">August</p>
+<p class="text-label-bold font-label-bold">04, 2023</p>
+</div>
+</div>
+<div class="flex justify-between items-center text-center">
+<div class="flex flex-col gap-1 text-on-surface-variant opacity-50">
+<span class="text-label-sm font-label-sm">mon</span>
+<span class="text-label-bold font-label-bold">31</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant">
+<span class="text-label-sm font-label-sm">tue</span>
+<span class="text-label-bold font-label-bold">01</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant">
+<span class="text-label-sm font-label-sm">wed</span>
+<span class="text-label-bold font-label-bold">02</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant">
+<span class="text-label-sm font-label-sm">thu</span>
+<span class="text-label-bold font-label-bold">03</span>
+</div>
+<div class="flex flex-col gap-1 bg-primary-container text-on-primary-container rounded-xl px-4 py-2 scale-110 shadow-lg">
+<span class="text-label-sm font-label-sm font-bold">fri</span>
+<span class="text-label-bold font-label-bold">04</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant">
+<span class="text-label-sm font-label-sm">sat</span>
+<span class="text-label-bold font-label-bold">05</span>
+</div>
+<div class="flex flex-col gap-1 text-on-surface-variant">
+<span class="text-label-sm font-label-sm">sun</span>
+<span class="text-label-bold font-label-bold">06</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content -->
+<section class="grid grid-cols-2 gap-inline-gutter">
+<!-- Art Class Card -->
+<div class="col-span-1 rounded-[24px] bg-[#E5DEFF] text-surface p-5 flex flex-col justify-between relative overflow-hidden h-[260px]">
+<div class="z-10">
+<h3 class="text-headline-md font-headline-md font-bold mb-1">Art Class <span class="text-label-sm font-label-sm align-top ml-1">(new)</span></h3>
+<p class="text-label-sm font-label-sm text-surface/80 max-w-[80%] leading-relaxed">Learn about composition &amp; colors...</p>
+<a class="text-label-sm font-label-sm font-bold underline mt-1 inline-block" href="#">see video</a>
+</div>
+<!-- Abstract Shapes Decor -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute bottom-10 right-10 w-24 h-24 bg-surface rounded-full blur-xl"></div>
+<div class="absolute top-10 left-10 w-16 h-16 bg-surface rounded-lg rotate-45 blur-lg"></div>
+</div>
+<div class="z-10 mt-auto flex flex-col gap-2">
+<div class="flex flex-wrap gap-2">
+<span class="glassmorphism !bg-surface/10 !border-surface/20 text-surface text-label-sm font-label-sm px-3 py-1 rounded-full backdrop-blur-md">video</span>
+<span class="glassmorphism !bg-surface/10 !border-surface/20 text-surface text-label-sm font-label-sm px-3 py-1 rounded-full backdrop-blur-md">interactive</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface text-on-surface flex items-center justify-center self-end mt-2 hover:scale-105 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Right Column Container -->
+<div class="col-span-1 flex flex-col gap-inline-gutter">
+<!-- Anonymous Doubt Box -->
+<div class="rounded-[24px] bg-surface-container-high border border-outline/10 p-4 flex flex-col items-center justify-center relative flex-1 text-center group cursor-pointer hover:bg-surface-container-highest transition-colors">
+<div class="absolute top-2 right-2 glassmorphism w-8 h-8 rounded-full flex items-center justify-center bg-white/10">
+<span class="material-symbols-outlined text-on-surface" style="font-size: 16px;">more_horiz</span>
+</div>
+<p class="text-label-bold font-label-bold text-on-surface mb-2 mt-4">Have a<br/>question?</p>
+<div class="w-20 h-20 relative mt-2 group-hover:scale-110 transition-transform">
+<!-- Simplified Mascot representation -->
+<div class="w-full h-full bg-on-surface rounded-full flex items-center justify-center relative overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+<div class="absolute top-4 w-12 h-6 bg-surface/20 rounded-full blur-sm"></div>
+<span class="material-symbols-outlined text-surface text-4xl" style="font-variation-settings: 'FILL' 1;">face</span>
+</div>
+<div class="absolute -right-2 -top-2 bg-primary-container text-on-primary-container w-6 h-6 rounded-full flex items-center justify-center shadow-lg border-2 border-surface-container-high">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+</div>
+</div>
+<!-- Music Class Small Card -->
+<div class="rounded-[20px] bg-surface-container-high overflow-hidden relative h-[90px] group cursor-pointer border border-outline/10">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<img alt="Music Mixer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a professional audio mixing console in a dark studio setting. The faders and knobs are lit by subtle, dramatic blue and purple LED lights, creating a high-contrast, premium dark mode aesthetic. The mood is creative and technical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwxS0aWnjKDVZXc_zseDPe-HNqbqLnTjTLnThdFuZ2hqjY4PzzHnZfhASHOeh65090lBirta80GlJA-ehHuMT0cjjusUsxSiCaDSaCjZg7gP-NmovpXZYa9e_rBiydRbhUfZGqtDCZd-cT14JgYG3xUjOWamf6RMQ86pPeB3FV60ZQ8PpmXHDmglaNaQwrpXL3AfJP5areOqjU9G6eosrl2y8KKF2rc6hoJ1ySXp3JtNX1dDhAT7ksm_pDyVbO8CFYwH2hGBXYFA"/>
+<div class="absolute bottom-3 left-4 z-20">
+<span class="glassmorphism text-on-surface text-label-sm font-label-sm px-3 py-1 rounded-full font-bold">music class</span>
+</div>
+</div>
+</div>
+<!-- History Team Task Card -->
+<div class="col-span-2 rounded-[24px] bg-primary-container p-5 flex flex-col gap-4 relative overflow-hidden border border-outline/20">
+<div class="absolute inset-0 bg-gradient-mesh opacity-40"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div class="max-w-[60%]">
+<h3 class="text-headline-md font-headline-md font-bold text-on-primary-container leading-tight mb-2">History <span class="text-label-sm font-label-sm align-top ml-1 opacity-80">Team Task!</span></h3>
+<p class="text-label-sm font-label-sm text-on-primary-container/80 leading-snug">split into teams and play a game...</p>
+</div>
+<!-- Avatar Group -->
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden bg-surface">
+<img alt="Team member 1" class="w-full h-full object-cover" data-alt="A small circular avatar portrait of a confident young man against a dark background, lit with subtle purple accents to match a dark mode premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEnUWywe65AnK6NwkjKH-mHlvs2RI6RJg36n0k8EZBv2GMzlMX1hIz1-eGWVy6tNoalDscLgR-PPDP2ycZ4y3es3IHFB2rzU68m4ttV8yA82H8xJ5jnK9e3IEO4Tvb02WFEwMmYvnVZ1GZW8dhPcJbAxMekPU8ETaUaI_wzztiim9tHnyvMmLJj1pv7t0QJ6vY__50DwK2B0wjfHVGiNZx5UZ_GpSs37u0wz8wDbkXMLJyP8vI4njclyPpH-ast56A62wYqPvrGQ"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden bg-surface">
+<img alt="Team member 2" class="w-full h-full object-cover" data-alt="A small circular avatar portrait of an intelligent young woman against a dark background, lit with subtle purple accents to match a dark mode premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZM00dm8G5FYqp8HEpQfvTlmmdGuIwWGnWfJfGY-rCYwZk-BjNHQffP_KUI6Q_Vf151YMNQk8xWzZ4Fp-38WCGKQVsfhmAZ6tqSx6KohqZ0iTS379nBvEueBrUSP01lE9vqS2zFIAmi_9rRZFJFK4hb4CSf5QcMy9ryGCBX0N1sDvj7dIJ59rYwDlibtzQLdOt8cDBQleimidOCYza0n3UV_9csml8EVMMpVlOVTC_CMvCBtSbrXQhWZ8x31ApSoGExw22qWCLg"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden bg-surface">
+<img alt="Team member 3" class="w-full h-full object-cover" data-alt="A small circular avatar portrait of a creative young woman with short hair against a dark background, lit with subtle purple accents to match a dark mode premium aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm_jKckcjN65Ls78UQyVebUOM2IWpd2WxuelUINZJWOL6PoPqOrWq0VSkhqzFrKXLDyszX2-VqB5cP5KPs8j_GtW2_cwYJ7bbLyazzpA5-cWveyuSVUNlBGla2aNUzE5Plg-OAGvySN8dW2KoR9iimWzSFMo-uVV9fX3DpMcJFR6F6IDxSb6xBkq19ldhEeuRtgxo61_0ZJRfGrxjjjzuRMVNZh0RQfvPrj7OLCXH4GMK8_6Hp7DGoLyY0z7f8e42VhuClUEwUug"/>
+</div>
+</div>
+</div>
+<div class="relative z-10 flex gap-2 mt-2">
+<span class="glassmorphism text-on-primary-container text-label-sm font-label-sm px-3 py-1 rounded-full border-on-primary-container/20 bg-black/10">team</span>
+<span class="glassmorphism text-on-primary-container text-label-sm font-label-sm px-3 py-1 rounded-full border-on-primary-container/20 bg-black/10">online</span>
+<span class="glassmorphism text-on-primary-container text-label-sm font-label-sm px-3 py-1 rounded-full border-on-primary-container/20 bg-black/10">interactive</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 py-4 pb-8 bg-surface-container/20 dark:bg-surface-container/20 backdrop-blur-lg shadow-lg md:hidden">
+<!-- Home (Active) -->
+<a class="flex items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 scale-90 transition-all hover:opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</a>
+<!-- School (Inactive) -->
+<a class="flex items-center justify-center text-on-surface-variant p-3 hover:opacity-80" href="#">
+<span class="material-symbols-outlined">school</span>
+</a>
+<!-- Profile (Inactive) -->
+<a class="flex items-center justify-center text-on-surface-variant p-3 hover:opacity-80" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>

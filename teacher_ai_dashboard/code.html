@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Dashboard - SmartClass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#917eff",
+                        "outline": "#928ea1",
+                        "on-background": "#e5e0ee",
+                        "surface-container-high": "#2b2932",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed-dim": "#ebc32e",
+                        "on-error": "#690005",
+                        "surface-tint": "#c9bfff",
+                        "tertiary-container": "#cda705",
+                        "surface-dim": "#14121b",
+                        "secondary-fixed-dim": "#8dd5b2",
+                        "background": "#14121b",
+                        "surface": "#14121b",
+                        "on-secondary": "#003825",
+                        "on-primary": "#2e009c",
+                        "on-secondary-fixed-variant": "#005137",
+                        "on-primary-container": "#28008a",
+                        "surface-bright": "#3a3842",
+                        "on-tertiary-container": "#4d3e00",
+                        "on-surface": "#e5e0ee",
+                        "on-secondary-fixed": "#002114",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "secondary": "#8dd5b2",
+                        "on-tertiary-fixed-variant": "#564500",
+                        "surface-container-low": "#1c1a24",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-tertiary": "#3c2f00",
+                        "tertiary-fixed": "#ffe082",
+                        "inverse-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-container": "#201e28",
+                        "on-secondary-container": "#83caa7",
+                        "secondary-container": "#00573b",
+                        "inverse-on-surface": "#312f39",
+                        "primary-fixed": "#e5deff",
+                        "on-tertiary-fixed": "#231b00",
+                        "error-container": "#93000a",
+                        "primary": "#c9bfff",
+                        "tertiary": "#ebc32e",
+                        "on-primary-fixed": "#1a0063",
+                        "on-surface-variant": "#c9c4d8",
+                        "surface-variant": "#35333e",
+                        "outline-variant": "#484555",
+                        "secondary-fixed": "#a9f2cd",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "20px",
+                        "inline-gutter": "12px",
+                        "stack-gap-sm": "8px",
+                        "stack-gap-md": "16px",
+                        "stack-gap-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #e5e0ee; }
+        .glass-panel {
+            background: rgba(43, 41, 50, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #8dd5b2;
+            box-shadow: 0 0 8px #8dd5b2;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(141, 213, 178, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(141, 213, 178, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(141, 213, 178, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen bg-black text-on-surface antialiased flex flex-col md:flex-row pb-24 md:pb-0">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-margin py-4 w-full bg-background dark:bg-background docked full-width top-0 z-40 sticky md:hidden">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline/20">
+<img alt="Teacher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkPjOwM1cr0KHOEVRXI2w-1Vmm6c8Kr2E6VHlguuLdGRZKWYwX0XwYmaVd19hNEN08d89AmQtNSTaLIAmvKW8Wrb0jjkgVr1FKOuAIOOYmOseoBSG0ZqeVxzyqh4EPIOWfyPfSMUS2LAK_kcjJ7qwd6Q3NLnKKLQBrNSSmgRpXi5cEAvNAmWDCsqYUkMp9dB5My6CpQxeosoBxOEosPzjhDJz3sGiADsDL6cEdstoq6NsNXl5hTeFArYsxLAtSPjpaXhgZpo8FtA"/>
+</div>
+<div>
+<h1 class="text-headline-lg font-headline-lg font-bold text-on-surface">Teacher Dashboard</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="live-dot"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Session PHY42 · Live</span>
+</div>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Side Nav (Web) -->
+<aside class="hidden md:flex flex-col w-64 bg-surface-container border-r border-outline-variant/10 h-screen sticky top-0 shrink-0">
+<div class="p-6">
+<h2 class="text-headline-md font-headline-md font-bold text-primary mb-8">SmartClass</h2>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-bold transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">school</span>
+                    Classes
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+                    Students
+                </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-container-margin max-w-5xl mx-auto w-full">
+<!-- Header (Web) -->
+<div class="hidden md:flex justify-between items-end mb-8">
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface mb-2">Teacher Dashboard</h1>
+<div class="flex items-center gap-3">
+<span class="live-dot"></span>
+<span class="text-body-md font-body-md text-on-surface-variant bg-surface-container px-3 py-1 rounded-full border border-outline/20">Session PHY42 · Physics</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full glass-panel hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface">notifications</span>
+</button>
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Teacher profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC36d_FISSZKf-EzXy5XP118I-hEw4FpUkNFVwdbKvqp6OsMNZZtZfNWeytAy9nDgSrHc7U6AkbIkOF3uRvpTt2CO8lsF-uPvvCtHi8kkE8_2iI6Vw4dagO-dni9lYvxiKp9aHk4E5c3KbiXb9On_vSNGnMcYlZc2yAJ-m1BtDdjX2Jy2rd_NYdUaF2HyN5WxcwOsDzJeyW9AnaoHFlNmDd4uGLGfgBxTTJguSSaYLTs9O7iKb-f2yywQxzUwNjOn2i76Kr09AIcg"/>
+</div>
+</div>
+</div>
+<!-- Metrics Row -->
+<div class="grid grid-cols-3 gap-3 md:gap-6 mb-8">
+<div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2 md:mb-4">
+<span class="material-symbols-outlined text-sm md:text-base">chat_bubble</span>
+<span class="text-label-sm md:text-label-bold font-label-sm uppercase tracking-wider">Doubts</span>
+</div>
+<div class="text-headline-lg md:text-display-lg font-headline-lg font-bold text-on-surface">8</div>
+</div>
+<div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col justify-between relative overflow-hidden group cursor-pointer hover:border-primary/50 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-2 text-primary mb-2 md:mb-4 relative z-10">
+<span class="material-symbols-outlined text-sm md:text-base">hub</span>
+<span class="text-label-sm md:text-label-bold font-label-sm uppercase tracking-wider">Clusters</span>
+</div>
+<div class="text-headline-lg md:text-display-lg font-headline-lg font-bold text-primary relative z-10">3</div>
+</div>
+<div class="glass-panel rounded-2xl p-4 md:p-6 flex flex-col justify-between">
+<div class="flex items-center gap-2 text-secondary mb-2 md:mb-4">
+<span class="material-symbols-outlined text-sm md:text-base">check_circle</span>
+<span class="text-label-sm md:text-label-bold font-label-sm uppercase tracking-wider">Resolved</span>
+</div>
+<div class="text-headline-lg md:text-display-lg font-headline-lg font-bold text-secondary">2</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+<div class="flex bg-surface-container p-1 rounded-xl w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg bg-surface text-on-surface text-label-bold font-label-bold shadow-sm border border-outline/10">
+                    AI Clusters
+                </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg text-on-surface-variant text-label-bold font-label-bold hover:text-on-surface transition-colors">
+                    All Doubts
+                </button>
+</div>
+<button class="w-full md:w-auto flex items-center justify-center gap-2 bg-[#7B61FF] hover:bg-[#6A52E0] text-white px-8 py-4 rounded-xl text-label-bold font-label-bold transition-transform active:scale-95 shadow-lg shadow-[#7B61FF]/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                Cluster with AI
+            </button>
+</div>
+<!-- Cluster Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- Cluster Card 1 -->
+<div class="bg-[#1A1A1A] rounded-[24px] p-6 border border-white/10 hover:border-primary/30 transition-all flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm border border-primary/20 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+                            4 students
+                        </span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm font-label-sm text-on-surface-variant border border-outline/10">Physics</span>
+</div>
+<button class="btn-glass px-4 py-2 rounded-full text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span>
+                        Resolve
+                    </button>
+</div>
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface mb-4">Speed vs Velocity</h3>
+<div class="bg-black/50 rounded-xl p-4 mt-auto border border-white/5">
+<p class="text-label-sm font-label-sm text-primary uppercase tracking-widest mb-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                        AI Suggested Response
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant">Speed is a scalar quantity indicating how fast an object moves, while velocity is a vector quantity that includes both speed and direction of motion.</p>
+</div>
+</div>
+<!-- Cluster Card 2 -->
+<div class="bg-[#1A1A1A] rounded-[24px] p-6 border border-white/10 hover:border-primary/30 transition-all flex flex-col relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-tertiary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm border border-primary/20 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">groups</span>
+                            3 students
+                        </span>
+</div>
+<button class="btn-glass px-4 py-2 rounded-full text-label-sm font-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check</span>
+                        Resolve
+                    </button>
+</div>
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface mb-4 relative z-10">Calculating Acceleration</h3>
+<div class="bg-black/50 rounded-xl p-4 mt-auto border border-white/5 relative z-10">
+<p class="text-label-sm font-label-sm text-primary uppercase tracking-widest mb-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                        AI Suggested Response
+                    </p>
+<p class="text-body-md font-body-md text-on-surface-variant">Acceleration is calculated as the change in velocity divided by the time taken. On a velocity-time graph, it's the slope of the line.</p>
+</div>
+</div>
+<!-- Cluster Card 3 (Resolved) -->
+<div class="bg-surface-container/30 rounded-[24px] p-6 border border-secondary/20 flex flex-col opacity-60">
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-label-sm font-label-sm border border-secondary/20 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                            Resolved
+                        </span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm font-label-sm text-on-surface-variant border border-outline/10">1 student</span>
+</div>
+<button class="btn-glass px-4 py-2 rounded-full text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1 hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+                        Reopen
+                    </button>
+</div>
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface-variant mb-2">Newton's First Law</h3>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-2">Understanding inertia and why objects stay in motion when friction exists.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 py-4 pb-8 bg-surface-container/20 dark:bg-surface-container/20 backdrop-blur-lg docked full-width rounded-t-xl shadow-lg md:hidden border-t border-white/5">
+<a class="flex flex-col items-center gap-1" href="#">
+<div class="flex items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 w-14 h-14 scale-90 transition-all shadow-md shadow-primary-container/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 hover:opacity-80 transition-opacity" href="#">
+<div class="flex items-center justify-center text-on-surface-variant p-3 w-14 h-14">
+<span class="material-symbols-outlined">school</span>
+</div>
+</a>
+<a class="flex flex-col items-center gap-1 hover:opacity-80 transition-opacity" href="#">
+<div class="flex items-center justify-center text-on-surface-variant p-3 w-14 h-14">
+<span class="material-symbols-outlined">person</span>
+</div>
+</a>
+</nav>
+</body></html>

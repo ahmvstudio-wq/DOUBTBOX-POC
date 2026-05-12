@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartClass - Lesson View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#917eff",
+                        "outline": "#928ea1",
+                        "on-background": "#e5e0ee",
+                        "surface-container-high": "#2b2932",
+                        "surface-container-highest": "#35333e",
+                        "tertiary-fixed-dim": "#ebc32e",
+                        "on-error": "#690005",
+                        "surface-tint": "#c9bfff",
+                        "tertiary-container": "#cda705",
+                        "surface-dim": "#14121b",
+                        "secondary-fixed-dim": "#8dd5b2",
+                        "background": "#14121b",
+                        "surface": "#14121b",
+                        "on-secondary": "#003825",
+                        "on-primary": "#2e009c",
+                        "on-secondary-fixed-variant": "#005137",
+                        "on-primary-container": "#28008a",
+                        "surface-bright": "#3a3842",
+                        "on-tertiary-container": "#4d3e00",
+                        "on-surface": "#e5e0ee",
+                        "on-secondary-fixed": "#002114",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#441cc8",
+                        "secondary": "#8dd5b2",
+                        "on-tertiary-fixed-variant": "#564500",
+                        "surface-container-low": "#1c1a24",
+                        "primary-fixed-dim": "#c9bfff",
+                        "surface-container-lowest": "#0e0d16",
+                        "on-tertiary": "#3c2f00",
+                        "tertiary-fixed": "#ffe082",
+                        "inverse-surface": "#e5e0ee",
+                        "inverse-primary": "#5d3fe0",
+                        "surface-container": "#201e28",
+                        "on-secondary-container": "#83caa7",
+                        "secondary-container": "#00573b",
+                        "inverse-on-surface": "#312f39",
+                        "primary-fixed": "#e5deff",
+                        "on-tertiary-fixed": "#231b00",
+                        "error-container": "#93000a",
+                        "primary": "#c9bfff",
+                        "tertiary": "#ebc32e",
+                        "on-primary-fixed": "#1a0063",
+                        "on-surface-variant": "#c9c4d8",
+                        "surface-variant": "#35333e",
+                        "outline-variant": "#484555",
+                        "secondary-fixed": "#a9f2cd",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "20px",
+                        "inline-gutter": "12px",
+                        "stack-gap-sm": "8px",
+                        "stack-gap-md": "16px",
+                        "stack-gap-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-bold": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "30px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .mesh-bg {
+            background-color: #1A1A1A;
+            background-image: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
+                              radial-gradient(at 100% 0%, hsla(339,49%,30%,0.2) 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md overflow-x-hidden">
+<!-- Top Navigation (Mobile Hidden, Desktop Shown) -->
+<header class="hidden md:flex justify-between items-center px-container-margin py-4 w-full bg-background/80 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-on-surface">SmartClass</span>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-bold font-label-bold" href="#">Explore</a>
+<a class="text-primary font-bold text-label-bold font-label-bold" href="#">My Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-bold font-label-bold" href="#">Community</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="search">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/30">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://placeholder.pics/svg/300"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-4xl mx-auto pb-32 md:pb-12 pt-4 px-container-margin">
+<!-- Video Player Section -->
+<section class="relative w-full aspect-video rounded-3xl overflow-hidden bg-surface-container-highest mb-stack-lg shadow-2xl group cursor-pointer border border-outline-variant/20">
+<!-- Video Cover Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A dynamic, high-contrast photograph of a physics experiment in motion, perhaps a pendulum or a prism refracting light. The setting is a modern, slightly darkened laboratory with sleek, futuristic equipment. The lighting is dramatic, with deep blacks and vibrant neon purple or blue highlights illuminating the scientific apparatus. The mood is focused, intellectual, and technologically advanced, fitting the high-end digital aesthetic of a premium educational platform." style="background-image: url('https://placeholder.pics/svg/300');">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
+</div>
+<!-- Floating Controls -->
+<div class="absolute top-4 left-4 z-10">
+<button class="glass-panel flex items-center gap-2 px-4 py-2 rounded-full text-on-background hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+<span class="text-label-sm font-label-sm">back</span>
+</button>
+</div>
+<div class="absolute top-4 right-4 z-10">
+<button class="glass-panel w-10 h-10 rounded-full flex items-center justify-center text-on-background hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="w-20 h-20 bg-primary/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-on-primary text-4xl ml-2" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<!-- Bottom Gradient Info -->
+<div class="absolute bottom-4 left-4 right-4 z-10 flex justify-between items-end">
+<div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 text-primary border border-primary/30 backdrop-blur-md mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] uppercase font-bold tracking-wider">Physics (PHY42)</span>
+</div>
+</div>
+<div class="glass-panel px-3 py-1.5 rounded-lg flex items-center gap-2 text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="closed_caption">closed_caption</span>
+<span>English CC</span>
+</div>
+</div>
+</section>
+<!-- Course Header Info -->
+<section class="mb-stack-lg">
+<h1 class="text-display-lg font-display-lg mb-4 text-on-background">Physics Principles <span class="text-primary opacity-80">(PHY42)</span></h1>
+<div class="flex flex-wrap items-center justify-between gap-4 glass-panel p-4 rounded-2xl">
+<!-- Instructor Info -->
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/50 relative">
+<img alt="Instructor avatar" class="w-full h-full object-cover" src="https://placeholder.pics/svg/300"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-background"></div>
+</div>
+<div>
+<p class="text-body-md font-body-md font-semibold text-on-background">Andrew Hubert</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Professor of Physics</p>
+</div>
+</div>
+<!-- Course Meta Stats -->
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="text-headline-md font-headline-md text-on-background">15</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Lessons</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30"></div>
+<div class="flex flex-col items-start">
+<span class="text-headline-md font-headline-md text-on-background">4</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Weeks</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Course Description & Actions -->
+<section class="mb-stack-lg flex flex-col md:flex-row gap-6">
+<div class="flex-1">
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-6">
+                    Dive into the fundamental principles of physics. This course covers mechanics, thermodynamics, and wave phenomena. Designed for students who want a deep, conceptual understanding of the physical world rather than just memorizing formulas.
+                </p>
+<div class="flex flex-wrap gap-2">
+<span class="glass-panel px-4 py-2 rounded-full text-label-sm font-label-sm text-on-background border border-outline-variant/20">Mechanics</span>
+<span class="glass-panel px-4 py-2 rounded-full text-label-sm font-label-sm text-on-background border border-outline-variant/20">Energy</span>
+<span class="glass-panel px-4 py-2 rounded-full text-label-sm font-label-sm text-on-background border border-outline-variant/20">Vectors</span>
+</div>
+</div>
+<!-- Secondary Actions Column -->
+<div class="w-full md:w-64 flex flex-col gap-3">
+<button class="w-full py-4 px-6 rounded-xl border border-primary/30 bg-primary/10 text-primary font-label-bold text-label-bold flex items-center justify-between hover:bg-primary/20 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+<span>Ask a Doubt</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="p-4 rounded-xl glass-panel flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Class Capacity</span>
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border border-background" src="https://placeholder.pics/svg/300"/>
+<img class="w-6 h-6 rounded-full border border-background" src="https://placeholder.pics/svg/300"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border border-background flex items-center justify-center text-[8px]">+24</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lesson Modules List -->
+<section class="mb-stack-lg">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-headline-md font-headline-md text-on-background">Syllabus</h2>
+<button class="text-label-sm font-label-sm text-primary flex items-center gap-1 hover:opacity-80">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span> PDF
+                </button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Module 1 (Active/Completed) -->
+<div class="p-4 rounded-2xl border border-primary/40 bg-surface-container-high flex items-center gap-4 cursor-pointer hover:border-primary transition-colors">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-md font-body-md font-semibold text-on-background mb-1">Perspective principles</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-1">Fundamental principles of perspective and motion.</p>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<div class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">1.2 hrs</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="more_horiz">more_horiz</span>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="p-4 rounded-2xl border border-outline-variant/10 bg-surface flex items-center gap-4 cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-md font-body-md font-semibold text-on-background mb-1">Color theory &amp; Light</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-1">Refraction, reflection, and the spectrum.</p>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<div class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">4.6 hrs</div>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="more_horiz">more_horiz</span>
+</div>
+</div>
+<!-- Module 3 -->
+<div class="p-4 rounded-2xl border border-outline-variant/10 bg-surface flex items-center gap-4 opacity-50 cursor-not-allowed">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-md font-body-md font-semibold text-on-background mb-1">Thermodynamics</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant line-clamp-1">Heat transfer and energy conservation.</p>
+</div>
+<div class="flex flex-col items-end gap-1 flex-shrink-0">
+<div class="bg-surface-container-high text-on-surface-variant text-[10px] px-2 py-0.5 rounded-full">3.0 hrs</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (Mobile Only - Positioned above Bottom Nav) -->
+<div class="md:hidden fixed bottom-24 right-4 z-40">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-icon="chat_bubble" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</button>
+</div>
+<!-- Fixed Bottom Sticky CTA Panel (Desktop) -->
+<div class="hidden md:flex fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl border-t border-outline-variant/10 p-4 z-40 justify-center">
+<div class="w-full max-w-4xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md">$20</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Full Course Access</span>
+</div>
+<button class="bg-primary text-on-primary text-body-md font-body-md font-bold py-3 px-8 rounded-full flex items-center gap-2 hover:bg-primary/90 transition-colors">
+                Start Learning
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Mobile Bottom Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 py-4 pb-8 bg-surface-container/20 dark:bg-surface-container/20 backdrop-blur-lg border-t border-outline-variant/10 rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 p-2" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</a>
+<a class="flex items-center justify-center bg-primary-container text-on-primary-container rounded-full p-3 scale-90 transition-all shadow-md" href="#">
+<span class="material-symbols-outlined" data-icon="school" data-weight="fill" style="font-variation-settings: 'FILL' 1;">school</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 p-2" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>
